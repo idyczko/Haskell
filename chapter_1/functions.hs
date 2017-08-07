@@ -82,3 +82,6 @@ triples = [(a,b,c)|a<-[1..10], b<-[1..10], c<-[1..10], c>b, b>a, a+b+c==24, a^2+
 
 -- Way smarter!
 triples' = [(a,b,c)|c<-[1..10], b<-[1..c], a<-[1..b], a+b+c==24, a^2+b^2==c^2]
+
+Prelude> reg tab1 tab2 = [x1:x2:x3:x4:x5:x6:x7[]|x1<-tab1, x2<-tab2, x3<-tab2, x
+4<-tab2, x5<-tab2, x6<-tab2, x7<-tab1]
