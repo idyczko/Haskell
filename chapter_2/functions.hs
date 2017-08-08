@@ -21,6 +21,8 @@ head' :: [a] -> a
 head' tab = tab !! 0 -- Not quite safe, becaues we may land out of bounds, when empty list will be inserted! 
 -- Pattern matching (explained better in next chapter)!
 
+x = 10.2 :: Double -- Explicitly defined type
+
 head'' :: [a] -> a
 head'' [] = error "Well, shit... The list was empty to begin with!" -- let's throw some error!
 head'' (x:_) = x -- Much much better, isn't it? :>
@@ -34,3 +36,9 @@ circumference' r = 2 * pi * r
 
 -- Typeclasses are some sort of general types - interfaces if you will. "If a type is a part of typeclass, that means that it supports and implements the behaviour
 -- the typeclass describes." - well said!
+-- when using :t operator in GHCi everything that appears before '=>' operator is "class constraint" - it defines which Typeclass the referenced object has to be
+-- derived from to enable usage of this operation.
+-- Some of the Typeclasses:
+-- Eq - enforces implementation of == and /= functions
+f' :: String -> String -> String
+f' a b = a ++ b
