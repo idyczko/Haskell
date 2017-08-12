@@ -16,7 +16,14 @@ user_unformatted_regex = "***1***E2**2*8*" :: String
 
 -- At first it is worth considering, that multiple consecutive asterisks represent the same
 -- operation as single asterisk. Therefore we may substitute them with single asterisk:
-user_regex = "*1*E2*2*8*" :: String
+remove_multiple_asterisks ::  String -> String
+remove_multiple_asterisks [] = []
+remove_multiple_asterisks (x:xs)
+   | null xs = x : []
+   | (x == '*') && ((head xs) == '*') = remove_multiple_asterisks xs
+   | otherwise = x : remove_multiple_asterisks xs
+
+user_regex = remove_multiple_asterisks user_unformatted_regex
 
 
 -- As we see above, there are 5 non-asterisk characters in our regex:
