@@ -66,10 +66,11 @@ reduced_domains_1 = [allowed_characters_reduction x | x <- characters]
 -- 3. Characters defined by user come one after another in string, from which we would delete
 -- asterisks. Domains have to respect that order. Therefore for 2 characters c_i and c_(i+1)
 -- the condition holds: x_i<x_(i+1)
---constraint_3 d1 d2 =
    
 arc_consistency :: ([Int], [Int], [Int] -> [Int] -> ([Int], [Int])) -> ([Int], [Int])
 arc_consistency (domain1, domain2, constraint) = constraint domain1 domain2
 
 -- 4. Characters, which stand in user's regex on positions directly succeeding asterisk character
 -- on position n can only be placed on positions [n..7].
+
+AC3 algorithm
