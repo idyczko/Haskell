@@ -53,7 +53,7 @@ tell :: (Show a) => [a] -> String
 tell [] = "The list is empty!"
 tell (x:[]) = "The list has a single element: " ++ show x
 tell (x:y:[]) = "The list has two elements: " ++ show x ++ "and" ++ show y
-tell [x,y,z] = "The list has three elements!" -- Notice, that the brackets may be omitted, as [x:y:z] is syntactic sugar for x:y:z:[]
+tell [x,y,z] = "The list has three elements!" -- Notice, that the brackets may be omitted, as [x,y,z] is syntactic sugar for x:y:z:[]
 tell (x:y:z:_) = "The list has maaaany elements!"
 
 -- Maybe a brand new length function?
@@ -69,7 +69,7 @@ sum' (x:xs) = x + sum' xs
 -- "AS PATTERNS" (those with @) - breaking some value to parts, while still having the whole thing:
 letterCount :: String -> String
 letterCount [] = "There are no letters in given String"
-letterCount wholeString@(x:xs) = "There are "++ show (length' [x|x<-wholeString, x/=' ']) ++ " letters in \"" ++ wholeString ++ "\""
+letterCount wholeString@(x:xs) = "There are "++ show (length' [x |x<-wholeString, x/=' ']) ++ " letters in \"" ++ wholeString ++ "\""
 
 -- GUARDS
 tellMeIQ :: Int -> String
@@ -79,7 +79,7 @@ tellMeIQ iq
    | iq < 150 = "Whoa, nice one!"
    | iq < 200 = "Albert, is that you?"
    | otherwise = "AGI implemented, we are doomed..."
-   
+
 bmiTell :: (RealFloat a) => a -> a -> String
 bmiTell weight height
    | bmi <= skinny = "You are skinny!"
@@ -93,7 +93,7 @@ bmiTell weight height
 max' a b = x where x = max a b
 
 -- Let expression (it always returns a value - EXPRESSION!):
-someVariable = let x = 10 -- Remember of spaces! Pain in the ass! 
+someVariable = let x = 10 -- Remember of spaces! Pain in the ass!
                    y = 20
                    z = 30
                in x * y + z
