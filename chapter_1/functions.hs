@@ -19,7 +19,7 @@ i = if x then 5 else 10;
 s = "Some freakin' string" -- Some string value - as always, the string is just a syntactic sugar on table of characters, therefore:
 z = "hello" == ['h', 'e', 'l', 'l', 'o'] -- will be true
 t = [1,2,3,4] -- Some table
-t_2 = take 3 t -- t_2 will be [1,2,3] - "take" takes the first elements of 
+t_2 = take 3 t -- t_2 will be [1,2,3] - "take" takes the first elements of
 -- t_3 = [1, 2, 3, 'c', 3.12] is not possible, as the lists in Haskell are homogenous (here 'c' is the problem, as integers can be easily cast to floating point numbers)
 t_4 = t ++ t_2 -- "++" operator is concatenation of lists - we append "t_2" to "t". Be careful though, as appending requires cycling through whole t list
 t_5 = 5 : t_4 -- ":" operator appends an element to begining of the list - it doesn't necessarily have to go through all elements.
@@ -59,10 +59,10 @@ rpct = replicate 3 10 -- List of three tens [10,10,10]
 
 -- List comprehension
 someComplicatedFunction tab threshold= [(2*x)^2|x<-tab, x>threshold] -- list comprehensions are cool!
-removeOdds tab = [x|x<-tab, not (odd x)] -- there is also "even"
-removeCapitals str = [x|x<-str, not (x `elem` ['A'..'Z']), x /= ' '] -- you can define multiple predicates! And yeah - did you remember string is just list of characters?
+removeOdds tab = [x | x<-tab, not (odd x)] -- there is also "even"
+removeCapitals str = [x | x<-str, not (x `elem` ['A'..'Z']), x /= ' '] -- you can define multiple predicates! And yeah - did you remember string is just list of characters?
 length' tab = sum [1|_<-tab] -- _ means we don't care about specific elements - only think of table as a whole!
-removeEvens tab = [[x|x<-y, not (even x)]|y<-tab]
+removeEvens tab = [[x | x<-y, not (even x)]|y<-tab]
 
 -- Tuples - tuples are data structures that allow storing values of different types - they are not homogenous and they are of fixed length! tuple and triple are two different things
 tup = (12, "asdasd")
@@ -82,6 +82,3 @@ triples = [(a,b,c)|a<-[1..10], b<-[1..10], c<-[1..10], c>b, b>a, a+b+c==24, a^2+
 
 -- Way smarter!
 triples' = [(a,b,c)|c<-[1..10], b<-[1..c], a<-[1..b], a+b+c==24, a^2+b^2==c^2]
-
-Prelude> reg tab1 tab2 = [x1:x2:x3:x4:x5:x6:x7[]|x1<-tab1, x2<-tab2, x3<-tab2, x
-4<-tab2, x5<-tab2, x6<-tab2, x7<-tab1]
