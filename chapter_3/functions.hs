@@ -120,3 +120,29 @@ head''' xs = case xs of [] -> error "Damn..."
                         (x:_) -> x
 
 -- The two upper functions are interchangeable. First one is prettier though. Case expressions are cool, becaues they allow us to match patterns in the middle of expressions.
+
+
+-- Let's do some folding:
+factorial''' x = foldl1 (*) [1..x]
+factorial'''' x = foldr1 (*) [1..x]
+factorial''''' x = foldr (*) 1 [1..x]
+factorial'''''' x = foldl (*) 1 [1..x]
+
+s = ["S", "t", "r"]
+s1 = foldr (++) "a" s -- s1 == "Stra"
+s2 = foldl (++) "a" s -- s2 == "aStr"
+
+tr = foldl1 (-) [1..10] == -53 -- Strange, isn't it? :)
+-- ((((((((1 - 2) - 3) - 4) - 5) - 6) - 7) - 8) - 9) - 10
+tr2 = foldr1 (-) [1..10] == -5 -- Bazinga.
+    -- 1 - (2 - (3 - (4 - (5 - (6 - (7 - (8 - (9 - 10))))))))
+
+intSum :: Int -> Int -> Int
+intSum x y = x + y
+
+
+fun num str  = ((++) . show . (!!)abc . (`mod`(length abc))) num str where abc = ['a'..'z']
+fun' str num = fun num str
+
+someStr = foldr fun "postfix" [1..10] -- starting with 'b'
+someOtherStr = foldl fun' "postfix" [1..10] -- starting with 'k'
