@@ -76,10 +76,3 @@ getChildren (Node x left right) = [getValue left, getValue right]
 
 getChildren' :: [Tree a] -> [Maybe a]
 getChildren' (x:xs) = (getChildren x) ++ (getChildren' xs)
-
--- Typeclasses 102
-{-
-instance (Show a) => Show (Tree a) where
-  show EmptyTree = ""
-  show (Node x left right) = show x
--}
