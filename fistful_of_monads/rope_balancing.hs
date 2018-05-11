@@ -42,7 +42,16 @@ val_3 = (+) <$> (Just 2) <*> (Just 4) -- Just 6
 tab = [(*2), (+1), ((-)4)] <*> [1..5]
 -- for [] fs <*> xs = [f x | f <- fs, x <- xs]
 
+-- The monad allows us to apply function taking simple value and returning an
+-- applicative functor to a functor.
+banana :: Pole -> Maybe Pole
+banana _ = Nothing
 
+pole = return (0, 0) :: Maybe Pole
+pole_2 = pole >>= leftPole 2 >>= rightPole 3 -- Just (2, 3)
+pole_nut = pole_2 >>= rightPole 3 >>= banana >>= leftPole 3 >> Nothing -- Nothing
+
+-- do notation's purpose is chaining monad operations together (IO/ Maybe/...).
 routine :: Maybe Pole
 routine = do
   start <- return (0, 0)
