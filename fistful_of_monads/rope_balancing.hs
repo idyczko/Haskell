@@ -30,9 +30,27 @@ maPT = Just (\x -> show (x + 10) ++ "!") <*> Just 10 -- Just "20!"
 nut = Nothing <*> Just 10 -- Nothing
 nut_2 = Just (\x -> show (x + 10) ++ "!") <*> Nothing -- Nothing
 
+-- Thanks to curried functions and the partial application you can chain the
+-- operations on applicatice functors:
+val = pure (+) <*> Just 3 <*> Just 4 -- Just 7
+-- applicative law: pure f <*> x = fmap f x
+val_2 = fmap (*) (Just 2) <*> (Just 4) -- Just 8
+-- Haskell therefore exports <$> operator, which is a infix fmap
+val_3 = (+) <$> (Just 2) <*> (Just 4) -- Just 6
+
+-- List type constructor [] is also an applicative functor:
+tab = [(*2), (+1), ((-)4)] <*> [1..5]
+-- for [] fs <*> xs = [f x | f <- fs, x <- xs]
+
+
 routine :: Maybe Pole
 routine = do
   start <- return (0, 0)
   first <- leftPole 2 start
   second <- rightPole 4 first
   leftPole 10 second
+
+
+main = do
+  start <- getLine
+  putStrLn $ reverse start
