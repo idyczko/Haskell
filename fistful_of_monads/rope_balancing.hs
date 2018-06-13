@@ -59,6 +59,14 @@ routine = do
   second <- rightPole 4 first
   leftPole 10 second
 
+banana_routine :: Maybe Pole
+banana_routine = do
+  start <- return (0, 0)
+  first <- leftPole 2 start
+  second <- rightPole 4 first
+  none <- Nothing -- It will blow up the whole thing. We don't need the "none <-" part.
+  return (0, 0) -- Writing Nothing in do is like doing >> Nothing - ignores outcome of
+                -- previous operations and simply returns Nothing.
 
 main = do
   start <- getLine
